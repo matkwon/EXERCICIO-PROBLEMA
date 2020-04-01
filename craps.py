@@ -165,13 +165,13 @@ while game:
             a = input('Você gostaria de apostar em: Point ("p"), Field ("f"), Craps ("c") ou Twelve ("t")? Por favor escolha um de cada vez!\n'
             '(Caso queria sair do jogo, digite "sair")\n')
             if a!= 'p' and a!='f' and a!='c' and a!='t' and a!='sair':
-            invalida=True
-            while invalida:
-                a=input('Escolha invalida! Selecione: "p" para Pass Line, "f" para Field , "c" para Craps ou "t" para Twelve. Caso queira sair escreva "sair": ')
-                if a=='p' or a=='f' or a=='c' or a=='t' or a=='sair':
-                    invalida=False
-                else:
-                    invalida=True
+                invalida=True
+                while invalida:
+                    a=input('Escolha invalida! Selecione: "p" para Pass Line, "f" para Field , "c" para Craps ou "t" para Twelve. Caso queira sair escreva "sair": ')
+                    if a=='p' or a=='f' or a=='c' or a=='t' or a=='sair':
+                        invalida=False
+                    else:
+                        invalida=True
             if a == "sair":
                 aposta2 = False
                 point = False
