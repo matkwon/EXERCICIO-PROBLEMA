@@ -6,16 +6,16 @@ while game:
     point = False
 #guarda os tipos de apostas:
     tipos = []
-#variáveis que identificam se a aposta já foi feita para que, então, não guarde repetidos na lista de tipos
-    i = 0
-    l = 0
-    z = 0
 #variáveis que guardam as apostas de cada tipo:
     p = 0
     f = 0
     c = 0
     t = 0
     while aposta:
+#variáveis que identificam se a aposta já foi feita para que, então, não se guarde repetidos na lista de tipos
+        i = 0
+        l = 0
+        z = 0
         print('Seu saldo atual: {0}'.format(saldo))
         print('Você está na rodada "Come out" do jogo!')
 #tipos possíveis de apostas:
@@ -117,53 +117,67 @@ while game:
                 if dados == 7 or 11:
                     print('Ganhou em Pass Line!')
                     saldo += 2 * p
-                    lucro 
+                    lucro += p
                 elif dados == 2 or 3 or 12:
                     print('Perdeu em Pass Line!')
+                    lucro -= p
                 else:
                     point = True
                 x += 1
             if tipos[x] == 'f':
                 if 5 <= dados <= 8:
                     print('Perdeu em Field!')
+                    lucro -= p
                 elif dados == 2:
                     print('Ganhou o dobro em Field!')
                     saldo += 3 * f
+                    lucro += 2 * f
                 elif dados == 12:
                     print('Ganhou o triplo em Field!')
                     saldo += 4 * f
+                    lucro += 3 * f
                 else:
                     print('Ganhou em Field!')
                     saldo += 2 * f
+                    lucro += f
                 x += 1
             if tipos[x] == 'c':
                 if dados == 2 or 3 or 12:
                     print('Ganhou em Craps! (x7)')
                     saldo += 8 * c
+                    lucro += 7 * c
                 else:
                     print('Perdeu em Craps!')
+                    lucro -= c
                 x += 1
             if tipos[x] == 't':
                 if dados == 12:
                     print('Ganhou em Twelve! (x30)')
                     saldo += 31 * t
+                    lucro += 30 * t
                 else:
                     print('Perdeu em Twelve!')
+                    lucro -= t
                 x += 1
-        if lucro<0:
-            print
+#diferença de dinheiro da rodada
+        if lucro < 0:
+            print('Seu prejuízo é de {0}.'.format(-lucro))
+        elif lucro == 0:
+            print('Seu saldo continua igual.')
+        else:
+            print('seu lucro é de {0}.'.format(lucro))
 #jogo em point:
     while point:
         aposta2 = True
         tipos2 = []
-        i = 0
-        l = 0
-        z = 0
         p = 0
         f = 0
         c = 0
         t = 0
         while aposta2:
+            i = 0
+            l = 0
+            z = 0
             print('Seu saldo atual: {0}'.format(saldo))
             print('Você está na rodada "Point" do jogo!')
 #tipos possíveis de apostas:
