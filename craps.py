@@ -123,6 +123,8 @@ while game:
                     lucro -= p
                 else:
                     point = True
+#variável para memorizar o point
+                    d = dados
                 x += 1
             if tipos[x] == 'f':
                 if 5 <= dados <= 8:
@@ -169,8 +171,7 @@ while game:
 #jogo em point:
     while point:
         aposta2 = True
-        tipos2 = []
-        p = 0
+        tipos2 = ['p']
         f = 0
         c = 0
         t = 0
@@ -192,12 +193,6 @@ while game:
                 print('Até mais!')
 #condicionamentos de cada escolha de aposta:
             elif a == 'p':
-                while i < l:
-                    if tipos[i] != 'p':
-                        i += 1
-                        z += 1
-                if z == l:
-                    tipos.append(a)
                 bet = int(input('Quanto quer apostar em Point? (1:1)\n'))
                 while bet > saldo or bet < 0:
                     bet = input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo))
@@ -263,4 +258,69 @@ while game:
                     input('Escolha inválida! "a" ou "d".\n')
                 if fim == 'd':
                     aposta2 = False
-        
+            l = len(tipos)
+#jogando os dados e verificando se ganhou ou não em cada aposta
+        if game:
+            x = 0
+            n = len(tipos)
+            lucro = 0
+            dado1 = random.randint(1,6)
+            print('Dado 1: {0}'.format(dado1))
+            dado2 = random.randint(1,6)
+            print('Dado 2: {0}'.format(dado2))
+            dados = dado1 + dado2
+            print('Soma: {0}'.format(dados))
+            while x < n:
+                if tipos[x] == 'p':
+                    if dados == d:
+                        print('Ganhou em Point!')
+                        saldo += 2 * p
+                        lucro += p
+                        point = False
+                    elif dados == 7:
+                        print('Perdeu em Point!')
+                        lucro -= p
+                        point = False
+                    x += 1
+                if tipos[x] == 'f':
+                    if 5 <= dados <= 8:
+                        print('Perdeu em Field!')
+                        lucro -= p
+                    elif dados == 2:
+                        print('Ganhou o dobro em Field!')
+                        saldo += 3 * f
+                        lucro += 2 * f
+                    elif dados == 12:
+                        print('Ganhou o triplo em Field!')
+                        saldo += 4 * f
+                        lucro += 3 * f
+                    else:
+                        print('Ganhou em Field!')
+                        saldo += 2 * f
+                        lucro += f
+                    x += 1
+                if tipos[x] == 'c':
+                    if dados == 2 or 3 or 12:
+                        print('Ganhou em Craps! (x7)')
+                        saldo += 8 * c
+                        lucro += 7 * c
+                    else:
+                        print('Perdeu em Craps!')
+                        lucro -= c
+                    x += 1
+                if tipos[x] == 't':
+                    if dados == 12:
+                        print('Ganhou em Twelve! (x30)')
+                        saldo += 31 * t
+                        lucro += 30 * t
+                    else:
+                        print('Perdeu em Twelve!')
+                        lucro -= t
+                    x += 1
+#diferença de dinheiro da rodada
+            if lucro < 0:
+                print('Seu prejuízo é de {0}.'.format(-lucro))
+            elif lucro == 0:
+                print('Seu saldo continua igual.')
+            else:
+                print('seu lucro é de {0}.'.format(lucro))
