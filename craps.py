@@ -249,3 +249,4 @@ while game:
                     input('Escolha inválida! "a" ou "d".\n')
                 if fim == 'd':
                     aposta2 = False
+        
