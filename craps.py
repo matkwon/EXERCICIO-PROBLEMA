@@ -33,7 +33,7 @@ while game:
         elif a == 'p':
             bet = int(input('Quanto quer apostar em Pass Line? (1:1)\n'))
             while bet > saldo or bet < 0:
-                bet = input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo))
+                bet = int(input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo)))
             p += bet
             saldo -= bet
             print('Saldo: {0}'.format(saldo))
@@ -45,7 +45,7 @@ while game:
         elif a == 'f':
             bet = int(input('Quanto quer apostar em Field? (1:1) ou (2:1, se somar 2) ou (3:1, se somar 12)\n'))
             while bet > saldo or bet < 0:
-                bet = input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo))
+                bet =int(input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo)))
             f += bet
             saldo -= bet
             print('Saldo: {0}'.format(saldo))
@@ -57,7 +57,7 @@ while game:
         elif a == 'c':
             bet = int(input('Quanto quer apostar em Craps? (7:1)\n'))
             while bet > saldo or bet < 0:
-                bet = input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo))
+                bet =int(input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo)))
             c += bet
             saldo -= bet
             print('Saldo: {0}'.format(saldo))
@@ -69,7 +69,7 @@ while game:
         elif a == 't':
             bet = int(input('Quanto quer apostar em Twelve? (30:1)\n'))
             while bet > saldo or bet < 0:
-                bet = input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo))
+                bet =int(input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo)))
             t += bet
             saldo -= bet
             print('Saldo: {0}'.format(saldo))
@@ -81,11 +81,11 @@ while game:
     #registra onde a pessoa apostou
     if p>0:
         tipos.append('p')
-    elif f>0:
+    if f>0:
         tipos.append('f')
-    elif c>0:
+    if c>0:
         tipos.append('c')
-    elif t>0:
+    if t>0:
         tipos.append('t')
     #jogando os dados e verificando se ganhou ou não em cada aposta:
     if game:
@@ -98,13 +98,14 @@ while game:
         print('Dado 2: {0}'.format(dado2))
         dados = dado1 + dado2
         print('Soma: {0}'.format(dados))
+        print(tipos)
         while x < n:
             if tipos[x] == 'p':
-                if dados == 7 and 11:
+                if dados== 7 or dados== 11:
                     print('Ganhou em Pass Line!')
                     saldo += 2 * p
                     lucro += p
-                elif dados == 2 or 3 and 12:
+                elif 2<=dados<=3 or dados==12:
                     print('Perdeu em Pass Line!')
                     lucro -= p
                 else:
@@ -128,7 +129,7 @@ while game:
                     saldo += 2 * f
                     lucro += f
             if tipos[x] == 'c':
-                if dados == 2 or 3 and 12:
+                if 2<=dados<=3 or dados==12:
                     print('Ganhou em Craps! (x7)')
                     saldo += 8 * c
                     lucro += 7 * c
@@ -154,7 +155,7 @@ while game:
     #jogo em point:
     while point:
         aposta2 = True
-        tipos2 = ['p']
+        tipos = ['p']
         f = 0
         c = 0
         t = 0
@@ -181,7 +182,7 @@ while game:
             elif a == 'p':
                 bet = int(input('Quanto quer apostar em Point? (1:1)\n'))
                 while bet > saldo or bet < 0:
-                    bet = input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo))
+                    bet =int(input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo)))
                 p += bet
                 saldo -= bet
                 print('Saldo: {0}'.format(saldo))
@@ -193,7 +194,7 @@ while game:
             elif a == 'f':
                 bet = int(input('Quanto quer apostar em Field? (1:1) ou (2:1, se somar 2) ou (3:1, se somar 12)\n'))
                 while bet > saldo or bet < 0:
-                    bet = input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo))
+                    bet =int(input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo)))
                 f += bet
                 saldo -= bet
                 print('Saldo: {0}'.format(saldo))
@@ -205,7 +206,7 @@ while game:
             elif a == 'c':
                 bet = int(input('Quanto quer apostar em Craps? (7:1)\n'))
                 while bet > saldo or bet < 0:
-                    bet = input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo))
+                    bet =int(input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo)))
                 c += bet
                 saldo -= bet
                 print('Saldo: {0}'.format(saldo))
@@ -217,7 +218,7 @@ while game:
             elif a == 't':
                 bet = int(input('Quanto quer apostar em Twelve? (30:1)\n'))
                 while bet > saldo or bet < 0:
-                    bet = input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo))
+                    bet =int(input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo)))
                 t += bet
                 saldo -= bet
                 print('Saldo: {0}'.format(saldo))
@@ -228,11 +229,11 @@ while game:
                     aposta2=False
         if p>0:
             tipos.append('p')
-        elif f>0:
+        if f>0:
             tipos.append('f')
-        elif c>0:
+        if c>0:
             tipos.append('c')
-        elif t>0:
+        if t>0:
             tipos.append('t')
         #jogando os dados e verificando se ganhou ou não em cada aposta
         if game:
@@ -256,7 +257,6 @@ while game:
                         print('Perdeu em Point!')
                         lucro -= p
                         point = False
-                    x += 1
                 if tipos[x] == 'f':
                     if 5 <= dados <= 8:
                         print('Perdeu em Field!')
@@ -273,16 +273,14 @@ while game:
                         print('Ganhou em Field!')
                         saldo += 2 * f
                         lucro += f
-                    x += 1
                 if tipos[x] == 'c':
-                    if dados == 2 or 3 or 12:
+                    if 2<=dados<=3 or dados==12:
                         print('Ganhou em Craps! (x7)')
                         saldo += 8 * c
                         lucro += 7 * c
                     else:
                         print('Perdeu em Craps!')
                         lucro -= c
-                    x += 1
                 if tipos[x] == 't':
                     if dados == 12:
                         print('Ganhou em Twelve! (x30)')
@@ -291,7 +289,7 @@ while game:
                     else:
                         print('Perdeu em Twelve!')
                         lucro -= t
-                    x += 1
+                x += 1
             #diferença de dinheiro da rodada
             if lucro < 0:
                 print('Seu prejuízo é de {0}.'.format(-lucro))
@@ -299,3 +297,5 @@ while game:
                 print('Seu saldo continua igual.')
             else:
                 print('seu lucro é de {0}.'.format(lucro))
+    if saldo==0:
+        game=False
