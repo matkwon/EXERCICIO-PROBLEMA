@@ -38,12 +38,10 @@ while game:
             saldo -= bet
             print('Saldo: {0}'.format(saldo))
             fim = input('Você deseja continuar as apostas ("a") ou rolar os dados ("d")?\n')
-            invalido=True
             while fim!='a' and fim!='d':
-                input('Escolha inválida! "a" ou "d".\n')
-                if fim == 'd':
-                    invalido=False
-            aposta=False
+                fim=input('Escolha inválida! "a" ou "d".\n')
+            if fim == 'd':
+                aposta=False
         elif a == 'f':
             bet = int(input('Quanto quer apostar em Field? (1:1) ou (2:1, se somar 2) ou (3:1, se somar 12)\n'))
             while bet > saldo or bet < 0:
@@ -52,12 +50,10 @@ while game:
             saldo -= bet
             print('Saldo: {0}'.format(saldo))
             fim = input('Você deseja continuar as apostas ("a") ou rolar os dados ("d")?\n')
-            invalido=True
             while fim!='a' and fim!='d':
-                input('Escolha inválida! "a" ou "d".\n')
-                if fim == 'd':
-                    invalido=False
-            aposta=False
+                fim=input('Escolha inválida! "a" ou "d".\n')
+            if fim == 'd':
+                aposta=False
         elif a == 'c':
             bet = int(input('Quanto quer apostar em Craps? (7:1)\n'))
             while bet > saldo or bet < 0:
@@ -66,12 +62,10 @@ while game:
             saldo -= bet
             print('Saldo: {0}'.format(saldo))
             fim = input('Você deseja continuar as apostas ("a") ou rolar os dados ("d")?\n')
-            invalido=True
             while fim!='a' and fim!='d':
-                input('Escolha inválida! "a" ou "d".\n')
-                if fim == 'd':
-                    invalido=False
-            aposta=False
+                fim=input('Escolha inválida! "a" ou "d".\n')
+            if fim == 'd':
+                aposta=False
         elif a == 't':
             bet = int(input('Quanto quer apostar em Twelve? (30:1)\n'))
             while bet > saldo or bet < 0:
@@ -80,12 +74,10 @@ while game:
             saldo -= bet
             print('Saldo: {0}'.format(saldo))
             fim = input('Você deseja continuar as apostas ("a") ou rolar os dados ("d")?\n')
-            invalido=True
             while fim!='a' and fim!='d':
-                input('Escolha inválida! "a" ou "d".\n')
-                if fim == 'd':
-                    invalido=False
-            aposta=False
+                fim=input('Escolha inválida! "a" ou "d".\n')
+            if fim == 'd':
+                aposta=False
     #registra onde a pessoa apostou
     if p>0:
         tipos.append('p')
@@ -119,7 +111,6 @@ while game:
                     point = True
                     #variável para memorizar o point:
                     d = dados
-                x += 1
             if tipos[x] == 'f':
                 if 5 <= dados <= 8:
                     print('Perdeu em Field!')
@@ -136,7 +127,6 @@ while game:
                     print('Ganhou em Field!')
                     saldo += 2 * f
                     lucro += f
-                x += 1
             if tipos[x] == 'c':
                 if dados == 2 or 3 and 12:
                     print('Ganhou em Craps! (x7)')
@@ -145,7 +135,6 @@ while game:
                 else:
                     print('Perdeu em Craps!')
                     lucro -= c
-                x += 1
             if tipos[x] == 't':
                 if dados == 12:
                     print('Ganhou em Twelve! (x30)')
@@ -154,7 +143,7 @@ while game:
                 else:
                     print('Perdeu em Twelve!')
                     lucro -= t
-                x += 1
+            x+=1
         #diferença de dinheiro da rodada
         if lucro < 0:
             print('Seu prejuízo é de {0}.'.format(-lucro))
@@ -170,16 +159,19 @@ while game:
         c = 0
         t = 0
         while aposta2:
-            i = 0
-            l = 0
-            z = 0
             print('Seu saldo atual: {0}'.format(saldo))
             print('Você está na rodada "Point" do jogo!')
             #tipos possíveis de apostas:
             a = input('Você gostaria de apostar em: Point ("p"), Field ("f"), Craps ("c") ou Twelve ("t")? Por favor escolha um de cada vez!\n'
             '(Caso queria sair do jogo, digite "sair")\n')
-            while a != 'p' or 'f' or 'c' or 't' or 'sair':
-                a = input('Inválido! Digite alguma das opções: "p", "f", "c", "t" ou "sair"\n')
+            if a!= 'p' and a!='f' and a!='c' and a!='t' and a!='sair':
+            invalida=True
+            while invalida:
+                a=input('Escolha invalida! Selecione: "p" para Pass Line, "f" para Field , "c" para Craps ou "t" para Twelve. Caso queira sair escreva "sair": ')
+                if a=='p' or a=='f' or a=='c' or a=='t' or a=='sair':
+                    invalida=False
+                else:
+                    invalida=True
             if a == "sair":
                 aposta2 = False
                 point = False
@@ -194,17 +186,11 @@ while game:
                 saldo -= bet
                 print('Saldo: {0}'.format(saldo))
                 fim = input('Você deseja continuar as apostas ("a") ou rolar os dados ("d")?\n')
-                while fim != 'a' and 'd':
-                    input('Escolha inválida! "a" ou "d".\n')
+                while fim!='a' and fim!='d':
+                    fim=input('Escolha inválida! "a" ou "d".\n')
                 if fim == 'd':
-                    aposta2 = False
+                    aposta2=False
             elif a == 'f':
-                while i < l:
-                    if tipos[i] != 'p':
-                        i += 1
-                        z += 1
-                if z == l:
-                    tipos.append(a)
                 bet = int(input('Quanto quer apostar em Field? (1:1) ou (2:1, se somar 2) ou (3:1, se somar 12)\n'))
                 while bet > saldo or bet < 0:
                     bet = input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo))
@@ -212,19 +198,11 @@ while game:
                 saldo -= bet
                 print('Saldo: {0}'.format(saldo))
                 fim = input('Você deseja continuar as apostas ("a") ou rolar os dados ("d")?\n')
-                invalido=True
                 while fim!='a' and fim!='d':
-                    input('Escolha inválida! "a" ou "d".\n')
-                    if fim == 'd':
-                        invalido=False
-                aposta2=False
+                    fim=input('Escolha inválida! "a" ou "d".\n')
+                if fim == 'd':
+                    aposta2=False
             elif a == 'c':
-                while i < l:
-                    if tipos[i] != 'p':
-                        i += 1
-                        z += 1
-                if z == l:
-                    tipos.append(a)
                 bet = int(input('Quanto quer apostar em Craps? (7:1)\n'))
                 while bet > saldo or bet < 0:
                     bet = input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo))
@@ -232,19 +210,11 @@ while game:
                 saldo -= bet
                 print('Saldo: {0}'.format(saldo))
                 fim = input('Você deseja continuar as apostas ("a") ou rolar os dados ("d")?\n')
-                invalido=True
                 while fim!='a' and fim!='d':
-                    input('Escolha inválida! "a" ou "d".\n')
-                    if fim == 'd':
-                        invalido=False
-                aposta2=False
+                    fim=input('Escolha inválida! "a" ou "d".\n')
+                if fim == 'd':
+                    aposta2=False
             elif a == 't':
-                while i < l:
-                    if tipos[i] != 'p':
-                        i += 1
-                        z += 1
-                if z == l:
-                    tipos.append(a)
                 bet = int(input('Quanto quer apostar em Twelve? (30:1)\n'))
                 while bet > saldo or bet < 0:
                     bet = input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo))
@@ -252,13 +222,18 @@ while game:
                 saldo -= bet
                 print('Saldo: {0}'.format(saldo))
                 fim = input('Você deseja continuar as apostas ("a") ou rolar os dados ("d")?\n')
-            invalido=True
-            while fim!='a' and fim!='d':
-                input('Escolha inválida! "a" ou "d".\n')
+                while fim!='a' and fim!='d':
+                    fim=input('Escolha inválida! "a" ou "d".\n')
                 if fim == 'd':
-                    invalido=False
-            aposta2=False
-            l = len(tipos)
+                    aposta2=False
+        if p>0:
+            tipos.append('p')
+        elif f>0:
+            tipos.append('f')
+        elif c>0:
+            tipos.append('c')
+        elif t>0:
+            tipos.append('t')
         #jogando os dados e verificando se ganhou ou não em cada aposta
         if game:
             x = 0
