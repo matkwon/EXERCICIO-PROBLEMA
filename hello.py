@@ -1,4 +1,5 @@
-nome = input('Qual seu nome? ')
-print('Hello {0}! '.format(nome))
-print('Tenha um bom dia {0}!'.format(nome))
-print('oi')
+import numpy
+tmax=255
+v=1
+listap=numpy.arange(0,tmax,v)
+print(listap)
