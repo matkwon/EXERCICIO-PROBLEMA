@@ -2,7 +2,8 @@ import random
 saldo = 500
 game = True
 while game:
-    aposta =True
+    aposta = True
+    point = False
     tipos = []
     p = 0
     f = 0
@@ -72,7 +73,6 @@ while game:
             if fim == 'd':
                 aposta = False
     while game:
-        point = False
         x = 0
         n = len(tipos)
         dado1 = random.randint(1,6)
@@ -118,4 +118,5 @@ while game:
                 else:
                     print('Perdeu em Twelve!')
                 x += 1
+    while point:
         
