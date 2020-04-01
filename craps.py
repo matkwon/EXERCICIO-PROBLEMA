@@ -71,9 +71,51 @@ while game:
                 input('Escolha inválida! "a" ou "d".\n')
             if fim == 'd':
                 aposta = False
-    while jogo:
+    while game:
+        point = False
+        x = 0
+        n = len(tipos)
         dado1 = random.randint(1,6)
         print('Dado 1: {0}'.format(dado1))
         dado2 = random.randint(1,6)
         print('Dado 2: {0}'.format(dado2))
-        print('Soma: {0}'.format(dado1+dado2))
+        dados = dado1 + dado2
+        print('Soma: {0}'.format(dados))
+        while x < n:
+            if tipos[x] == 'p':
+                if dados == 7 or 11:
+                    print('Ganhou em Pass Line!')
+                    saldo += 2 * p
+                elif dados == 2 or 3 or 12:
+                    print('Perdeu em Pass Line!')
+                else:
+                    point = True
+                x += 1
+            if tipos[x] == 'f':
+                if 5 <= dados <= 8:
+                    print('Perdeu em Field!')
+                elif dados == 2:
+                    print('Ganhou o dobro em Field!')
+                    saldo += 3 * f
+                elif dados == 12:
+                    print('Ganhou o triplo em Field!')
+                    saldo += 4 * f
+                else:
+                    print('Ganhou em Field!')
+                    saldo += 2 * f
+                x += 1
+            if tipos[x] == 'c':
+                if dados == 2 or 3 or 12:
+                    print('Ganhou em Craps! (x7)')
+                    saldo += 8 * c
+                else:
+                    print('Perdeu em Craps!')
+                x += 1
+            if tipos[x] == 't':
+                if dados == 12:
+                    print('Ganhou em Twelve! (x30)')
+                    saldo += 31 * t
+                else:
+                    print('Perdeu em Twelve!')
+                x += 1
+        
