@@ -19,10 +19,16 @@ while game:
         print('Seu saldo atual: {0}'.format(saldo))
         print('Você está na rodada "Come out" do jogo!')
         #tipos possíveis de apostas:
-        a = input('Você gostaria de apostar em: Pass Line ("p"), Field ("f"), Craps ("c") ou Twelve ("t")? Por favor escolha um de cada vez!\n'
+        a=input('Você gostaria de apostar em: Pass Line ("p"), Field ("f"), Craps ("c") ou Twelve ("t")? Por favor escolha um de cada vez!\n'  
         '(Caso queria sair do jogo, digite "sair")\n')
-        while a != 'p' or 'f' or 'c' or 't' or 'sair':
-            a = input('Inválido! Digite alguma das opções: "p", "f", "c", "t" ou "sair"\n')
+        if a!= 'p' or a!='f' or a!='c' or a!='t' or a!='sair':
+            invalida=True
+            while invalida:
+                a=input('Escolha invalida! Selecione: "p" para Pass Line, "f" para Field , "c" para Craps ou "t" para Twelve. Caso queira sair escreva "sair": ')
+                if a== 'p' or a=='f' or a=='c' or a=='t' or a=='sair':
+                    invalida=False
+                else:
+                    invalida=True
         if a == "sair":
             aposta = False
             game = False
@@ -41,10 +47,10 @@ while game:
             p += bet
             saldo -= bet
             print('Saldo: {0}'.format(saldo))
-            fim = input('Você deseja continuar as apostas ("a") ou rolar os dados ("d")?\n')
-            while fim != 'a' and 'd':
-                input('Escolha inválida! "a" ou "d".\n')
-            if fim == 'd':
+            fim = input('Você deseja continuar as apostas ("C") ou rolar os dados ("D")?\n')
+            while fim != 'C' and 'D':
+                input('Escolha inválida! "C" ou "D".\n')
+            if fim == 'D':
                 aposta = False
         elif a == 'f':
             while i < l:
