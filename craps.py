@@ -71,3 +71,9 @@ while game:
                 input('Escolha inválida! "a" ou "d".\n')
             if fim == 'd':
                 aposta = False
+    while jogo:
+        dado1 = random.randint(1,6)
+        print('Dado 1: {0}'.format(dado1))
+        dado2 = random.randint(1,6)
+        print('Dado 2: {0}'.format(dado2))
+        print('Soma: {0}'.format(dado1+dado2))
