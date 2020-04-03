@@ -1,3 +1,10 @@
+#Design de Software - Exercício Problema
+#Jogo de Craps simplificado
+#Produzido por:
+#Matheus Kwon
+#Vitor Fortes Giuliano Riccetti
+
+
 import random
 #saldo inicial:
 saldo = 500
@@ -21,7 +28,7 @@ while game:
         if a!= 'P' and a!='F' and a!='C' and a!='T' and a!="SAIR":
             invalida=True
             while invalida:
-                a=input('Escolha invalida! Selecione: "P" para Pass Line, "F" para Field , "C" para Craps ou "T" para Twelve. Caso queira sair escreva "SAIR": ')
+                a=input('Escolha inválida! Selecione: "P" para Pass Line, "F" para Field , "C" para Craps ou "T" para Twelve. Caso queira sair escreva "SAIR": ')
                 if a=='P' or a=='F' or a=='C' or a=='T' or a=="SAIR":
                     invalida=False
                 else:
@@ -40,7 +47,7 @@ while game:
             saldo -= bet
             print('Saldo: {0}'.format(saldo))
             if saldo == 0:
-                print('Você não tem mais dinheiro para apostar nessa rodada')
+                print('Você não tem mais dinheiro para apostar nessa rodada.')
                 input('Aperte ENTER para jogar os dados')
                 aposta = False
             else:
@@ -57,7 +64,7 @@ while game:
             saldo -= bet
             print('Saldo: {0}'.format(saldo))
             if saldo == 0:
-                print('Você não tem mais dinheiro para apostar nessa rodada')
+                print('Você não tem mais dinheiro para apostar nessa rodada.')
                 input('Aperte ENTER para jogar os dados')
                 aposta = False
             else:
@@ -74,7 +81,7 @@ while game:
             saldo -= bet
             print('Saldo: {0}'.format(saldo))
             if saldo == 0:
-                print('Você não tem mais dinheiro para apostar nessa rodadar')
+                print('Você não tem mais dinheiro para apostar nessa rodada.')
                 input('Aperte ENTER para jogar os dados')
                 aposta = False
             else:
@@ -91,7 +98,7 @@ while game:
             saldo -= bet
             print('Saldo: {0}'.format(saldo))
             if saldo == 0:
-                print('Você não tem mais dinheiro para apostar nessa rodada')
+                print('Você não tem mais dinheiro para apostar nessa rodada.')
                 input('Aperte ENTER para jogar os dados')
                 aposta = False
             else:
@@ -100,7 +107,7 @@ while game:
                     fim=input('Escolha inválida! "CONTINUAR" ou "JOGAR".\n')
                 if fim == "JOGAR":
                     aposta=False
-    #registra onde a pessoa apostou:
+    #registra os tipos de aposta:
     if p>0:
         tipos.append('P')
     if f>0:
@@ -111,7 +118,7 @@ while game:
         tipos.append('T')
     #jogando os dados e verificando se ganhou ou não em cada aposta:
     if game:
-        #indice da lista tipos:
+        #índice da lista tipos:
         x = 0
         n = len(tipos)
         lucro = 0
@@ -172,21 +179,20 @@ while game:
         if lucro < 0:
             print('Seu prejuízo é de {0}.'.format(-lucro))
             if saldo == 0:
-                print('Você perdeu, até a proxima')
+                print('Você perdeu, até a próxima!')
                 game = False
-            else:
-                game = True
         elif lucro == 0:
             print('Seu saldo continua igual.')
         else:
             print('Seu lucro é de {0}.'.format(lucro))
+    #variável que verifica se já fez aposta em point:
+    U = False
     #jogo em point:
     while point:
         aposta2 = True
-        U = 0
-        if U > 1:
+        if U = True:
             tipos2 = []
-        elif U < 1:
+        else:
             tipos2 = []
             tipos2.append('P')
         pn = 0
@@ -203,12 +209,12 @@ while game:
                 aposta2 = False
             else:
                 aposta2=True
-                a = input('Você gostaria de apostar em: Point ("PN"), Field ("F"), Craps ("C") ou Twelve ("T") ? Por favor escolha um de cada vez!\n(Se você não quiser apostar, digite "NADA")'
+                a = input('Você gostaria de apostar em: Point ("PN"), Field ("F"), Craps ("C") ou Twelve ("T") ? Por favor escolha um de cada vez!\n(Se você não quiser apostar, digite "NADA")\n'
                 '(Caso queria sair do jogo, digite "SAIR")\n')
                 if a!= 'PN' and a!='F' and a!='C' and a!='T' and a!="SAIR" and a!="NADA":
                     invalida=True
                     while invalida:
-                        a=input('Escolha invalida! Selecione: "PN" para Point, "F" para Field , "C" para Craps ou "T" para Twelve. Caso queira sair escreva "SAIR" ou se você não quiser apostar, digite "NADA" : ')
+                        a=input('Escolha inválida! Selecione: "PN" para Point, "F" para Field , "C" para Craps ou "T" para Twelve. Caso queira sair escreva "SAIR" ou se você não quiser apostar, digite "NADA" : ')
                         if a=='PN' or a=='F' or a=='C' or a=='T' or a=="SAIR":
                             invalida=False
                         else:
@@ -223,8 +229,9 @@ while game:
                     aposta2 = False
                 #codicionamentos de cada escolha de aposta:
                 elif a == 'PN':
-                    U+=2
+                    U = True
                     tipos2 = []
+                    #aposta atual:
                     bet = int(input('Quanto quer apostar em Point? (1:1)\n'))
                     while bet > saldo or bet < 0:
                         bet =int(input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo)))
@@ -232,7 +239,7 @@ while game:
                     saldo -= bet
                     print('Saldo: {0}'.format(saldo))
                     if saldo == 0:
-                        print('Você não tem mais dinheiro para apostar nessa rodada')
+                        print('Você não tem mais dinheiro para apostar nessa rodada.')
                         input('Aperte ENTER para jogar os dados')
                         aposta2 = False
                     else:
@@ -249,7 +256,7 @@ while game:
                     saldo -= bet
                     print('Saldo: {0}'.format(saldo))
                     if saldo == 0:
-                        print('Você não tem mais dinheiro para apostar nessa rodada')
+                        print('Você não tem mais dinheiro para apostar nessa rodada.')
                         input('Aperte ENTER para jogar os dados')
                         aposta2 = False
                     else:
@@ -266,7 +273,7 @@ while game:
                     saldo -= bet
                     print('Saldo: {0}'.format(saldo))
                     if saldo == 0:
-                        print('Você não tem mais dinheiro para apostar nessa rodada')
+                        print('Você não tem mais dinheiro para apostar nessa rodada.')
                         input('Aperte ENTER para jogar os dados')
                         aposta2 = False
                     else:
@@ -283,7 +290,7 @@ while game:
                     saldo -= bet
                     print('Saldo: {0}'.format(saldo))
                     if saldo == 0:
-                        print('Você não tem mais dinheiro para apostar nessa rodada')
+                        print('Você não tem mais dinheiro para apostar nessa rodada.')
                         input('Aperte ENTER para jogar os dados')
                         aposta2 = False
                     else:
@@ -302,6 +309,7 @@ while game:
             tipos2.append('T')
         #jogando os dados e verificando se ganhou ou não em cada aposta
         if game:
+            #índice da lista tipos2
             x = 0
             n = len(tipos2)
             lucro = 0
