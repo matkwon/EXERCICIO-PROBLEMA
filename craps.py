@@ -45,8 +45,8 @@ while game:
                 fim = input('Você deseja continuar as apostas ("CONTINUAR") ou rolar os dados ("JOGAR")?\n')
                 while fim!="CONTINUAR" and fim!="JOGAR":
                     fim=input('Escolha inválida! "CONTINUAR" ou "JOGAR".\n')
-                    if fim == "JOGAR":
-                        aposta=False
+                if fim == "JOGAR":
+                    aposta = False
         elif a == 'F':
             bet = int(input('Quanto quer apostar em Field? (1:1) ou (2:1, se somar 2) ou (3:1, se somar 12)\n'))
             while bet > saldo or bet < 0:
@@ -199,12 +199,12 @@ while game:
                 aposta2 = False
             else:
                 aposta2=True
-                a = input('Você gostaria de apostar em: Point ("PN"), Field ("F"), Craps ("C") ou Twelve ("T")? Por favor escolha um de cada vez!\n'
+                a = input('Você gostaria de apostar em: Point ("PN"), Field ("F"), Craps ("C") ou Twelve ("T") ? Por favor escolha um de cada vez!\n(Se você não quiser apostar, digite "NADA")'
                 '(Caso queria sair do jogo, digite "SAIR")\n')
-                if a!= 'PN' and a!='F' and a!='C' and a!='T' and a!="SAIR":
+                if a!= 'PN' and a!='F' and a!='C' and a!='T' and a!="SAIR" and a!="NADA":
                     invalida=True
                     while invalida:
-                        a=input('Escolha invalida! Selecione: "PN" para Point, "F" para Field , "C" para Craps ou "T" para Twelve. Caso queira sair escreva "SAIR": ')
+                        a=input('Escolha invalida! Selecione: "PN" para Point, "F" para Field , "C" para Craps ou "T" para Twelve. Caso queira sair escreva "SAIR" ou se você não quiser apostar, digite "NADA" : ')
                         if a=='PN' or a=='F' or a=='C' or a=='T' or a=="SAIR":
                             invalida=False
                         else:
@@ -214,6 +214,9 @@ while game:
                     point = False
                     game = False
                     print('Até mais!')
+                elif a == "NADA":
+                    input('Aperte ENTER para jogar os dados')
+                    aposta2 = False
                 #codicionamentos de cada escolha de aposta:
                 elif a == 'PN':
                     U+=2
@@ -318,12 +321,12 @@ while game:
                 if tipos2[x]=='PN':
                     if dados == d:
                         print('Ganhou em Point!')
-                        saldo += 2 * pn
-                        lucro += pn
+                        saldo += 2 * (pn+p)
+                        lucro += (pn+p)
                         point = False
                     elif dados == 7:
                         print('Perdeu em Point!')
-                        lucro -= pn
+                        lucro = lucro-(pn+p)
                         point = False
                 if tipos2[x] == 'F':
                     if 5 <= dados <= 8:
