@@ -1,4 +1,5 @@
 import random
+#saldo inicial:
 saldo = 500
 game = True
 while game:
@@ -6,7 +7,7 @@ while game:
     point = False
     #guarda os tipos de apostas:
     tipos = []
-    #variáveis que guardam as apostas de cada tipo:
+    #variáveis que guardam as apostas de cada tipo na rodada come out :
     p = 0
     f = 0
     c = 0
@@ -31,6 +32,7 @@ while game:
             print('Até mais!')
         #condicionamentos de cada escolha de aposta:
         elif a == 'P':
+            #aposta atual:
             bet = int(input('Quanto quer apostar em Pass Line? (1:1)\n'))
             while bet > saldo or bet < 0:
                 bet = int(input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo)))
@@ -98,7 +100,7 @@ while game:
                     fim=input('Escolha inválida! "CONTINUAR" ou "JOGAR".\n')
                 if fim == "JOGAR":
                     aposta=False
-    #registra onde a pessoa apostou
+    #registra onde a pessoa apostou:
     if p>0:
         tipos.append('P')
     if f>0:
@@ -109,6 +111,7 @@ while game:
         tipos.append('T')
     #jogando os dados e verificando se ganhou ou não em cada aposta:
     if game:
+        #indice da lista tipos:
         x = 0
         n = len(tipos)
         lucro = 0
@@ -127,9 +130,10 @@ while game:
                 elif 2<=dados<=3 or dados==12:
                     print('Perdeu em Pass Line!')
                     lucro -= p
+                #passa para a rodada point:
                 else:
                     point = True
-                    #variável para memorizar o point:
+                    #variável para memorizar o numero tirado em come out para tirar em point:
                     d = dados
             if tipos[x] == 'F':
                 if 5 <= dados <= 8:
@@ -175,7 +179,7 @@ while game:
         elif lucro == 0:
             print('Seu saldo continua igual.')
         else:
-            print('seu lucro é de {0}.'.format(lucro))
+            print('Seu lucro é de {0}.'.format(lucro))
     #jogo em point:
     while point:
         aposta2 = True
@@ -372,4 +376,4 @@ while game:
             elif lucro == 0:
                 print('Seu saldo continua igual.')
             else:
-                print('seu lucro é de {0}.'.format(lucro))
+                print('Seu lucro é de {0}.'.format(lucro))
