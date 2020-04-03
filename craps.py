@@ -39,6 +39,7 @@ while game:
             print('Saldo: {0}'.format(saldo))
             if saldo == 0:
                 print('Você não tem mais dinheiro para apostar nessa rodada')
+                input('Aperte ENTER para jogar os dados')
                 aposta = False
             else:
                 fim = input('Você deseja continuar as apostas ("CONTINUAR") ou rolar os dados ("JOGAR")?\n')
@@ -55,6 +56,7 @@ while game:
             print('Saldo: {0}'.format(saldo))
             if saldo == 0:
                 print('Você não tem mais dinheiro para apostar nessa rodada')
+                input('Aperte ENTER para jogar os dados')
                 aposta = False
             else:
                 fim = input('Você deseja continuar as apostas ("CONTINUAR") ou rolar os dados ("JOGAR")?\n')
@@ -71,6 +73,7 @@ while game:
             print('Saldo: {0}'.format(saldo))
             if saldo == 0:
                 print('Você não tem mais dinheiro para apostar nessa rodadar')
+                input('Aperte ENTER para jogar os dados')
                 aposta = False
             else:
                 fim = input('Você deseja continuar as apostas ("CONTINUAR") ou rolar os dados ("JOGAR")?\n')
@@ -87,6 +90,7 @@ while game:
             print('Saldo: {0}'.format(saldo))
             if saldo == 0:
                 print('Você não tem mais dinheiro para apostar nessa rodada')
+                input('Aperte ENTER para jogar os dados')
                 aposta = False
             else:
                 fim = input('Você deseja continuar as apostas ("CONTINUAR") ou rolar os dados ("JOGAR")?\n')
@@ -114,7 +118,6 @@ while game:
         print('Dado 2: {0}'.format(dado2))
         dados = dado1 + dado2
         print('Soma: {0}'.format(dados))
-        print(tipos)
         while x < n:
             if tipos[x] == 'P':
                 if dados== 7 or dados== 11:
@@ -163,7 +166,12 @@ while game:
             x+=1
         #diferença de dinheiro da rodada
         if lucro < 0:
-            print('Seu prejuízo é de {0}.'.format(lucro))
+            print('Seu prejuízo é de {0}.'.format(-lucro))
+            if saldo == 0:
+                print('Você perdeu, até a proxima')
+                game = False
+            else:
+                game = True
         elif lucro == 0:
             print('Seu saldo continua igual.')
         else:
@@ -171,7 +179,13 @@ while game:
     #jogo em point:
     while point:
         aposta2 = True
-        tipos = ['P']
+        U = 0
+        if U > 1:
+            tipos2 = []
+        elif U < 1:
+            tipos2 = []
+            tipos2.append('P')
+        pn = 0
         f = 0
         c = 0
         t = 0
@@ -180,15 +194,18 @@ while game:
             print('Você está na rodada "Point" do jogo!')
             #tipos possíveis de apostas:
             if saldo == 0:
+                print('Você não tem nada para apostar!')
+                input('Aperte ENTER para jogar os dados')
                 aposta2 = False
             else:
-                a = input('Você gostaria de apostar em: Point ("P"), Field ("F"), Craps ("C") ou Twelve ("T")? Por favor escolha um de cada vez!\n'
+                aposta2=True
+                a = input('Você gostaria de apostar em: Point ("PN"), Field ("F"), Craps ("C") ou Twelve ("T")? Por favor escolha um de cada vez!\n'
                 '(Caso queria sair do jogo, digite "SAIR")\n')
-                if a!= 'P' and a!='F' and a!='C' and a!='T' and a!="SAIR":
+                if a!= 'PN' and a!='F' and a!='C' and a!='T' and a!="SAIR":
                     invalida=True
                     while invalida:
-                        a=input('Escolha invalida! Selecione: "P" para Pass Line, "F" para Field , "C" para Craps ou "T" para Twelve. Caso queira sair escreva "SAIR": ')
-                        if a=='P' or a=='F' or a=='C' or a=='T' or a=="SAIR":
+                        a=input('Escolha invalida! Selecione: "PN" para Point, "F" para Field , "C" para Craps ou "T" para Twelve. Caso queira sair escreva "SAIR": ')
+                        if a=='PN' or a=='F' or a=='C' or a=='T' or a=="SAIR":
                             invalida=False
                         else:
                             invalida=True
@@ -197,16 +214,19 @@ while game:
                     point = False
                     game = False
                     print('Até mais!')
-            #condicionamentos de cada escolha de aposta:
-                elif a == 'P':
+                #codicionamentos de cada escolha de aposta:
+                elif a == 'PN':
+                    U+=2
+                    tipos2 = []
                     bet = int(input('Quanto quer apostar em Point? (1:1)\n'))
                     while bet > saldo or bet < 0:
                         bet =int(input('Aposte um valor que você CONSIGA apostar! Seu saldo atual: {0}\n'.format(saldo)))
-                    p += bet
+                    pn += bet
                     saldo -= bet
                     print('Saldo: {0}'.format(saldo))
                     if saldo == 0:
                         print('Você não tem mais dinheiro para apostar nessa rodada')
+                        input('Aperte ENTER para jogar os dados')
                         aposta2 = False
                     else:
                         fim = input('Você deseja continuar as apostas ("CONTINUAR") ou rolar os dados ("JOGAR")?\n')
@@ -223,6 +243,7 @@ while game:
                     print('Saldo: {0}'.format(saldo))
                     if saldo == 0:
                         print('Você não tem mais dinheiro para apostar nessa rodada')
+                        input('Aperte ENTER para jogar os dados')
                         aposta2 = False
                     else:
                         fim = input('Você deseja continuar as apostas ("CONTINUAR") ou rolar os dados ("JOGAR")?\n')
@@ -239,6 +260,7 @@ while game:
                     print('Saldo: {0}'.format(saldo))
                     if saldo == 0:
                         print('Você não tem mais dinheiro para apostar nessa rodada')
+                        input('Aperte ENTER para jogar os dados')
                         aposta2 = False
                     else:
                         fim = input('Você deseja continuar as apostas ("CONTINUAR") ou rolar os dados ("JOGAR")?\n')
@@ -255,6 +277,7 @@ while game:
                     print('Saldo: {0}'.format(saldo))
                     if saldo == 0:
                         print('Você não tem mais dinheiro para apostar nessa rodada')
+                        input('Aperte ENTER para jogar os dados')
                         aposta2 = False
                     else:
                         fim = input('Você deseja continuar as apostas ("CONTINUAR") ou rolar os dados ("JOGAR")?\n')
@@ -262,18 +285,18 @@ while game:
                             fim=input('Escolha inválida! "CONTINUAR" ou "JOGAR".\n')
                         if fim == "JOGAR":
                             aposta2=False
-        if p >0:
-            tipos.append('P')
+        if pn>0:
+            tipos2.append('PN')
         if f>0:
-            tipos.append('F')
+            tipos2.append('F')
         if c>0:
-            tipos.append('C')
+            tipos2.append('C')
         if t>0:
-            tipos.append('T')
+            tipos2.append('T')
         #jogando os dados e verificando se ganhou ou não em cada aposta
         if game:
             x = 0
-            n = len(tipos)
+            n = len(tipos2)
             lucro = 0
             dado1 = random.randint(1,6)
             print('Dado 1: {0}'.format(dado1))
@@ -282,7 +305,7 @@ while game:
             dados = dado1 + dado2
             print('Soma: {0}'.format(dados))
             while x < n:
-                if tipos[x] == 'P':
+                if tipos2[0] == 'P':
                     if dados == d:
                         print('Ganhou em Point!')
                         saldo += 2 * p
@@ -292,10 +315,20 @@ while game:
                         print('Perdeu em Point!')
                         lucro -= p
                         point = False
-                if tipos[x] == 'F':
+                if tipos2[x]=='PN':
+                    if dados == d:
+                        print('Ganhou em Point!')
+                        saldo += 2 * pn
+                        lucro += pn
+                        point = False
+                    elif dados == 7:
+                        print('Perdeu em Point!')
+                        lucro -= pn
+                        point = False
+                if tipos2[x] == 'F':
                     if 5 <= dados <= 8:
                         print('Perdeu em Field!')
-                        lucro -= p
+                        lucro -= f
                     elif dados == 2:
                         print('Ganhou o dobro em Field!')
                         saldo += 3 * f
@@ -308,7 +341,7 @@ while game:
                         print('Ganhou em Field!')
                         saldo += 2 * f
                         lucro += f
-                if tipos[x] == 'C':
+                if tipos2[x] == 'C':
                     if 2<=dados<=3 or dados==12:
                         print('Ganhou em Craps! (x7)')
                         saldo += 8 * c
@@ -316,7 +349,7 @@ while game:
                     else:
                         print('Perdeu em Craps!')
                         lucro -= c
-                if tipos[x] == 'T':
+                if tipos2[x] == 'T':
                     if dados == 12:
                         print('Ganhou em Twelve! (x30)')
                         saldo += 31 * t
@@ -327,8 +360,13 @@ while game:
                 x += 1
             #diferença de dinheiro da rodada
             if lucro < 0:
-                print('Seu prejuízo é de {0}.'.format(lucro))
-            elif lucro == 0 and saldo > 0:
+                print('Seu prejuízo é de {0}.'.format(-lucro))
+                if saldo == 0:
+                    print('Você perdeu, até a proxima')
+                    game = False
+                else:
+                    game = True
+            elif lucro == 0:
                 print('Seu saldo continua igual.')
             else:
                 print('seu lucro é de {0}.'.format(lucro))
