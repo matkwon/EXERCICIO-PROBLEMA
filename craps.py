@@ -192,7 +192,7 @@ while game:
         aposta2 = True
         if U > 1
             tipos2 = []
-        elif < 1:
+        elif U < 1:
             tipos2 = []
             tipos2.append('P')
         pn = 0
