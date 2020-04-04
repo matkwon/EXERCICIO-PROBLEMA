@@ -190,7 +190,7 @@ while game:
     #jogo em point:
     while point:
         aposta2 = True
-        if U > 1
+        if U > 1:
             tipos2 = []
         elif U < 1:
             tipos2 = []
